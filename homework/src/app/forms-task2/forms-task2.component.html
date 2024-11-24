@@ -1,0 +1,37 @@
+<h2>Task2</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label for="email">E-mail:</label>
+  <input
+    type="email"
+    id="email"
+    formControlName="email"
+    [ngClass]="{ 'is-invalid': email?.invalid && email?.touched }"
+  />
+  <div *ngIf="email?.invalid && email?.touched" class="error">
+    <small *ngIf="email?.errors?.['required']"
+      >Поле E-mail є обов'язковим.</small
+    >
+    <small *ngIf="email?.errors?.['email']">Введіть коректний E-mail.</small>
+  </div>
+
+  <label for="password">Пароль:</label>
+  <input
+    type="password"
+    id="password"
+    formControlName="password"
+    [ngClass]="{ 'is-invalid': password?.invalid && password?.touched }"
+  />
+  <div *ngIf="password?.invalid && password?.touched" class="error">
+    <small *ngIf="password?.errors?.['required']"
+      >Поле Пароль є обов'язковим.</small
+    >
+    <small *ngIf="password?.errors?.['minlength']">
+      Пароль має містити щонайменше 6 символів.
+    </small>
+  </div>
+
+  <button type="submit" [disabled]="loginForm.invalid">Надіслати</button>
+</form>
+
+<p>Введені дані: {{ loginForm.value | json }}</p>

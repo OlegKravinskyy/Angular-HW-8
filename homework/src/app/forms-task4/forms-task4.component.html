@@ -1,0 +1,69 @@
+<h2>Task4</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label for="email">E-mail:</label>
+  <input
+    type="email"
+    id="email"
+    formControlName="email"
+    [ngClass]="{
+      'is-invalid':
+        loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+    }"
+  />
+  <div
+    *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+    class="error"
+  >
+    <small *ngIf="loginForm.get('email')?.errors?.['required']"
+      >Field E-mail is required.</small
+    >
+    <small *ngIf="loginForm.get('email')?.errors?.['email']"
+      >Enter correct E-mail.</small
+    >
+  </div>
+
+  <label for="password">Password:</label>
+  <input
+    type="password"
+    id="password"
+    formControlName="password"
+    [ngClass]="{
+      'is-invalid':
+        loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+    }"
+  />
+  <div
+    *ngIf="
+      loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+    "
+    class="error"
+  >
+    <small *ngIf="loginForm.get('password')?.errors?.['required']"
+      >Field password is required.</small
+    >
+    <small *ngIf="loginForm.get('password')?.errors?.['minlength']"
+      >Password needs more
+      {{loginForm.get('password')?.errors?.['minlength'].requiredLength}}
+      symbols.</small
+    >
+  </div>
+
+  <label for="acceptTerms">
+    <input type="checkbox" id="acceptTerms" formControlName="acceptTerms" />
+    Getting conditions
+  </label>
+
+  <label>Your hobbies:</label>
+  <div formArrayName="hobbies">
+    <div *ngFor="let hobby of hobbies.controls; let i = index">
+      <input [formControlName]="i" />
+      <button type="button" (click)="removeHobby(i)">Delete</button>
+    </div>
+  </div>
+  <button type="button" (click)="addHobby()">Add hobbies</button>
+
+  <button type="submit" [disabled]="loginForm.invalid">Send</button>
+</form>
+
+<p>Data: {{ loginForm.value | json }}</p>

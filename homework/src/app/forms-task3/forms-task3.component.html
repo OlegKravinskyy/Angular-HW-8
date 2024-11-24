@@ -1,0 +1,42 @@
+<h2>Task3</h2>
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm)">
+  <div>
+    Login
+    <br />
+    <input type="text" required formControlName="userLogin" />
+  </div>
+  <br />
+
+  <div>
+    Password
+    <br />
+    <input type="text" required formControlName="userPass" />
+  </div>
+  <br />
+
+  <details [formGroupName]="'name'">
+    <summary>Extra</summary>
+
+    <div>
+      FirstName<br />
+      <input type="text" required formControlName="firstName" />
+    </div>
+    <br />
+
+    <div>
+      SecondName<br />
+      <input type="text" required formControlName="secondName" />
+    </div>
+    <br />
+  </details>
+
+  <input
+    type="submit"
+    class="btn"
+    value="Registration"
+    [disabled]="registrationForm.invalid"
+  />
+</form>
+
+<pre>{{ registrationForm.value | json }}</pre>

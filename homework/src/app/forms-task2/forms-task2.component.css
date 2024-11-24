@@ -1,0 +1,17 @@
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+input.ng-touched.ng-valid {
+  border: 1px solid green;
+}
+
+.error {
+  color: red;
+  font-size: 0.875em;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

@@ -1,0 +1,19 @@
+<h2>Task1</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    class="email-field"
+    [(ngModel)]="email"
+    name="email"
+  /><br />
+  <input
+    type="text"
+    class="password-field"
+    [(ngModel)]="password"
+    name="password"
+  /><br />
+
+  <button type="submit">Send</button>
+</form>
+<p *ngIf="userData">{{ { email: email, password: password } | json }}</p>
